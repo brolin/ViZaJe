@@ -18,3 +18,11 @@ write.csv(MensajesXDia,"./Data/MensajesXDia.csv")
 
 MensajesXDia[which(MensajesXDia$n_correos == as.numeric(max(MensajesXDia$n_correos))),]
 MensajesXDia[which(MensajesXDia$n_correos == as.numeric(min(MensajesXDia$n_correos))),]
+
+MensajesXDia$date <- strptime(MensajesXDia$date,"%Y%m%d")
+template <- seq(fechas[1],fechas[length(fechas)],"day")
+plantilla <- data.frame(template)
+
+MensajesXDia <- join(plantilla,MensajesXDia, "date")
+MensajesXDia$n_correos[which(is.na(MensajesXDia$n_correos))] <- 0
+write.csv(MensajesXDia,"./Data/MensajesXDia.csv")
