@@ -37,12 +37,6 @@ mailThreads %>% arrange(desc(cnt.y,cnt.x)) %>% View
 mailThreads %>% filter(cnt.x > 1) ## Seed de los que no se puede obtener la fecha direcatmente porque hay varios con el mismo nombre
 mailThreads[-which(mailThreads$cnt.x > 1),]
 
-map(mailThreads$subject, function(s) {})
-
-a <- sinIssues %>% group_by(subject) %>% nest
-
-jsonlite::toJSON(a)
-
 
 sinIssues[threadseed.idx, c("subject","date","from")]
 
